@@ -1,0 +1,11 @@
+@import "../../scss/base.scss";
+
+.categories__scroll-container {
+  max-width: 1280px;
+}
+
+.categories {
+  @include flex(center, space-between);
+  min-width: 2440px;
+  margin: 2rem 0;
+}

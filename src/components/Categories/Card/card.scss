@@ -1,0 +1,45 @@
+.card {
+  position: relative;
+  margin-right: 1.5rem;
+
+  width: 140px;
+  height: 140px;
+
+  border: 2px solid rgb(240, 240, 240);
+  border-radius: 1rem;
+
+  background: rgb(252, 252, 248);
+  color: rgb(68, 68, 76);
+
+  transition: .2s;
+  cursor: pointer;
+}
+
+.card:last-child {
+  margin: 0;
+}
+
+.card:hover {
+  background: rgb(245, 245, 245);
+}
+
+.card__img {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 36px;
+
+  transform: translate(-50%, -45%);
+}
+
+.card__name {
+  position: absolute;
+  bottom: .5rem;
+  left: 50%;
+
+  transform: translate(-50%, -0.5rem);
+  
+  font-weight: 500;
+  text-transform: capitalize;
+}
+

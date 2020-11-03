@@ -1,6 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
+import { Home } from "./components/Home/Home";
+
 import { Login } from "./components/Auth/Login/Login";
 import { Signup } from "./components/Auth/Signup/Signup";
 
@@ -13,7 +15,7 @@ const App: React.FC = () => {
     <>
       <Switch>
         <PrivateRoute exact path="/">
-          <h1>Hi</h1>
+          <Home />
         </PrivateRoute>
 
         <PreventRoute path="/login">

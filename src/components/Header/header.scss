@@ -1,0 +1,31 @@
+@import "../../scss/base.scss";
+
+.header {
+  @include flex(center, space-between);
+}
+
+@media only screen and (max-width: 1023px) {
+  .menu__title {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .user__picture {
+    display: none;
+  }
+
+  .user__name {
+    margin-left: .75rem;
+  }
+
+  .searchbar {
+    margin: 0 1rem;
+  }
+}
+
+@media only screen and (max-width: 419px) {
+  .user .user__name {
+    display: none;
+  }
+}
