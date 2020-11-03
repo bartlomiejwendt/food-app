@@ -1,7 +1,33 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
+
+import { Login } from "./components/Auth/Login/Login";
+import { Signup } from "./components/Auth/Signup/Signup";
+
+import { PrivateRoute } from "./routes/PrivateRoute";
+import { PreventRoute } from "./routes/PreventRoute";
+import { ErrorRoute } from "./routes/ErrorRoute/ErrorRoute";
 
 const App: React.FC = () => {
-  return <div className="app">Hello Typescript</div>;
+  return (
+    <>
+      <Switch>
+        <PrivateRoute exact path="/">
+          <h1>Hi</h1>
+        </PrivateRoute>
+
+        <PreventRoute path="/login">
+          <Login />
+        </PreventRoute>
+
+        <PreventRoute path="/signup">
+          <Signup />
+        </PreventRoute>
+
+        <Route component={ErrorRoute} />
+      </Switch>
+    </>
+  );
 };
 
 export default App;
