@@ -68,8 +68,6 @@
   @include flex(center, unset);
 }
 
-.foodcard__rating {}
-
 .foodcard__star {
   color: $orange;
 }
@@ -78,9 +76,8 @@
   margin: 0 .5rem;
 }
 
-.foodcard__restaurant {}
-
 .foodcard__category {
+  text-transform: capitalize;
   margin: 0 0.5rem;
 }
 

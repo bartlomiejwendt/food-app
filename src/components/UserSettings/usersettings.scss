@@ -1,0 +1,123 @@
+@import "../../scss/base.scss";
+
+.user-settings {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.user-settings__header {
+  @include flex(center, space-between);
+}
+
+.user-settings__title {
+  margin: 0;
+}
+
+.user-settings__photo-wrapper {
+  margin-top: 1rem;
+}
+
+.user-settings__photo {
+  margin: 0.5rem 0;
+}
+
+.user-settings__upload {
+  margin: 0 1rem;
+  padding: .5rem 1.25rem;
+
+  outline: none;
+  border: 1px solid #e1e1e1;
+  border-radius: 0.5rem;
+
+  color: $blue;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.user-settings__upload:hover {
+  border: 1px solid $blue;
+  background: $blue;
+  color: white;
+}
+
+.user-settings__input {
+  max-width: 280px;
+  width: 100%;
+
+  margin: .25rem 0;
+  padding: .5rem 1rem;
+
+  outline: none;
+  border: 1px solid #e1e1e1;
+  border-radius: 0.5rem;
+}
+
+.user-settings__input:focus {
+  border: 1px solid $blue;
+}
+
+.user-settings__email {
+  margin: 1rem 0;
+}
+
+.user-settings__warning-inner {
+  @include flex(unset, unset);
+  flex-direction: column;
+}
+
+.user-settings__warning {
+  @include flex(center, space-between);
+  margin: 1rem 0;
+}
+
+.user-settings__paragraph {
+  font-weight: 500;
+  color: #96939b;
+}
+
+.user-settings__paragraph:first-child {
+  margin: 0;
+}
+
+.user-settings--red {
+  color: $red;
+}
+
+.user-settings__delete-account {
+  font-weight: 600;
+  color: $red;
+  cursor: pointer;
+}
+
+.user-settings__user-key {
+  font-size: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.user-settings__save-changes {
+  float: right;
+}
+
+.user-settings__button {
+  margin: .5rem 0;
+  padding: .5rem 1rem;
+
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+
+  font-weight: 500;
+
+  background: $blue;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .user-settings__warning {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

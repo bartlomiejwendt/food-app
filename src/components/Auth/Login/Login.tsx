@@ -39,6 +39,12 @@ export const Login: React.FC = () => {
     auth.signInWithEmailAndPassword(email, password).then((loginUserRef) => {
       const userRef = database.collection("users").doc(loginUserRef?.user?.uid);
 
+      auth.currentUser?.getIdToken(true).then((idToken) => {
+        localStorage.setItem("authToken", JSON.stringify(idToken));
+      }).catch((error) => {
+        console.error(error);
+      })
+
       userRef.get().then((doc) => {
         if (doc.exists) {
           const userData = doc.data();

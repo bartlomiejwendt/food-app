@@ -1,5 +1,7 @@
 $green: rgb(10, 175, 96);
 $orange: rgb(247, 151, 0);
+$blue: #047CFC;
+$red: #e63946;
 
 @mixin flex($align: center, $justify: unset) {
   display: flex;

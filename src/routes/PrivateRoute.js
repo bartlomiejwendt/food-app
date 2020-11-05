@@ -2,13 +2,13 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
 export const PrivateRoute = ({ children, ...rest }) => {
-  const authUser = JSON.parse(localStorage.getItem("authUser"));
+  const authToken = JSON.parse(localStorage.getItem("authToken"));
 
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        authUser ? (
+        authToken ? (
           children
         ) : (
           <Redirect

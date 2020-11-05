@@ -5,13 +5,13 @@ import { Route, Redirect } from "react-router-dom";
 // Such as Login or Signup
 
 export const PreventRoute = ({ children, ...rest }) => {
-  const authUser = JSON.parse(localStorage.getItem("authUser"));
+  const authToken = JSON.parse(localStorage.getItem("authToken"));
 
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        authUser ? (
+        authToken ? (
           <Redirect
             to={{
               pathname: "/",

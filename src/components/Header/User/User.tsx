@@ -1,19 +1,33 @@
 import React from "react";
 import "./user.scss";
+import { useHistory } from "react-router-dom";
+import { useTrackedState } from "../../../store/store";
 
-import { Badge, Drawer } from "antd";
+import { Basket } from "../../Basket/Basket";
+
+import { Badge, Drawer, Dropdown, Menu } from "antd";
 import { ShoppingOutlined } from "@ant-design/icons";
 
 export const User: React.FC = () => {
+  const history = useHistory();
+  const state = useTrackedState();
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
   const toggleIsVisible = () => {
     setIsVisible((prevState: boolean): boolean => !prevState);
   }
 
+  const userDropdown = (
+    <Menu>
+      <Menu.Item>History</Menu.Item>
+      <Menu.Item onClick={() => history.push("/settings")}>Settings</Menu.Item>
+      <Menu.Item>Log out</Menu.Item>
+    </Menu>
+  )
+
   return (
     <div className="user">
-      <Badge count={1} showZero style={{ backgroundColor: "rgb(10, 175, 96)" }}>
+      <Badge count={state.basket.length} showZero style={{ backgroundColor: "rgb(10, 175, 96)" }}>
         <span className="user__basket" onClick={toggleIsVisible}>
           <ShoppingOutlined className="user__basket-icon" />
         </span>
@@ -27,7 +41,9 @@ export const User: React.FC = () => {
         />
       </div>
 
-      <span className="user__name">Jan Kowalski</span>
+      <Dropdown overlay={userDropdown} trigger={['click']}>
+        <span className="user__name">Jan Kowalski</span>
+      </Dropdown>
 
       <Drawer
         title="Your order"
@@ -36,7 +52,7 @@ export const User: React.FC = () => {
         onClose={toggleIsVisible}
         visible={isVisible}
       >
-        Basket
+        <Basket />
       </Drawer>
     </div>
   );

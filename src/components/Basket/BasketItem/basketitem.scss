@@ -1,0 +1,71 @@
+@import "../../../scss/base.scss";
+
+.basket-item {
+  @include flex(center, unset);
+  margin-bottom: 1rem;
+}
+
+.basket-item:last-child {
+  margin-bottom: 0;
+}
+
+.basket-item__display {
+  position: relative;
+  width: 140px;
+  height: 60px;
+}
+
+.basket-item__display:hover .basket-item__overlay {
+  opacity: 1;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.basket-item__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.basket-item__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  @include flex(center, center);
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.basket-item__icon {
+  font-size: 1.25rem;
+  color: white;
+}
+
+.basket-item__info {
+  @include flex(unset, space-between);
+  width: 100%;
+  margin-left: 1rem;
+}
+
+.basket-item__x {
+  margin: 0 0.5rem;
+}
+
+.basket-item__count,
+.basket-item__title,
+.basket-item__price {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.basket-item__x,
+.basket-item__price {
+  color: $orange;
+}
