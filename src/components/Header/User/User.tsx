@@ -28,7 +28,7 @@ export const User: React.FC = () => {
 
   const userDropdown = (
     <Menu>
-      <Menu.Item>History</Menu.Item>
+      <Menu.Item onClick={() => history.push("/history")}>History</Menu.Item>
       <Menu.Item onClick={() => history.push("/settings")}>Settings</Menu.Item>
       <Menu.Item onClick={() => handleSignOut()}>Log out</Menu.Item>
     </Menu>

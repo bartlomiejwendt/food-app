@@ -237,7 +237,7 @@ export const Detailed: React.FC = () => {
 
           {
             opinions.length ? (
-              opinions.map((opinion, idx) => (
+              opinions.sort((a, b) => b.date - a.date).map((opinion, idx) => (
                 <DetailedComment {...opinion} key={idx} />
               ))
             ) : (

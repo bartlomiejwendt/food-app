@@ -12,11 +12,12 @@ import { CloseOutlined } from "@ant-design/icons";
 export const UserSettings: React.FC = () => {
   const history = useHistory();
   const currentUser = JSON.parse(localStorage.getItem("authUser")!);
-  const { avatar, firstName, lastName, email }= currentUser;
+  const { avatar, firstName, lastName, email, uid }= currentUser;
 
 
   const [uploadFile, setUploadFile] = React.useState<any>();
   const [name, setName] = React.useState<string>();
+  const [showKey, setShowKey] = React.useState<boolean>(false);
 
   const handleUpdateName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -107,7 +108,7 @@ export const UserSettings: React.FC = () => {
           <Avatar
             size={48}
             src={ uploadFile ? URL.createObjectURL(uploadFile) : (
-              avatar ? avatar : "https://images.unsplash.com/photo-1547046136-81b530776144?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+              avatar ? avatar : "https://images.unsplash.com/photo-1466921583968-f07aa80c526e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
             )}
           />
 
@@ -175,8 +176,10 @@ export const UserSettings: React.FC = () => {
 
       <Divider />
 
-      <div className="user-settings__user-key">
-        <span>Show my unique key</span>
+      <div className="user-settings__user-key" onClick={() => setShowKey((prevState: boolean): boolean => !prevState)}>
+        {
+          showKey ? (<span>{uid}</span>) : (<span>Show my unique key</span>)
+        }
       </div>
 
       <div className="user-settings__save-changes">

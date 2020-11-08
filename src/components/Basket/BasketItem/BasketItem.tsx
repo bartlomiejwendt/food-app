@@ -35,7 +35,7 @@ export const BasketItem: React.FC<foodTypes> = (props) => {
           <span className="basket-item__title">{name}</span>
         </div>
         <div>
-          <span className="basket-item__price">${price}</span>
+          <span className="basket-item__price">${(price * quantity).toFixed(2)}</span>
         </div>
       </div>
     </div>

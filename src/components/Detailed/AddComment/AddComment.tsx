@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/firestore";
 
-import { Rate } from "antd";
+import { message, Rate } from "antd";
 
 interface inputValuesTypes {
   rate: number,
@@ -65,8 +65,10 @@ export const AddComment: React.FC<Props> = () => {
       })
 
       handleResetForm();
+
+      message.success("Your comment was add!");
     } else {
-      alert("You did not rate your product or comment is too short!");
+      message.error("Your comment must have at least 4 letters and rate");
     }
   }
 

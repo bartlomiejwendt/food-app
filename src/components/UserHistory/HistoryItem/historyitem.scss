@@ -1,0 +1,24 @@
+@import "../../../scss/base.scss";
+
+.historyitem {
+  margin-top: 1rem;
+}
+
+.historyitem .basket-item .basket-item__overlay {
+  display: none;
+}
+
+.historyitem__total {
+  @include flex(center, space-between);
+  padding: 1rem 0;
+  border-top: 1px solid #d3d3d3;
+}
+
+.historyitem__total-heading {
+  margin: 0;
+}
+
+.historyitem__amount {
+  font-size: 1.25rem;
+  font-weight: 500;
+}

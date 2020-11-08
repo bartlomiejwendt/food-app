@@ -6,6 +6,7 @@ import { Home } from "./components/Home/Home";
 import { UserSettings } from "./components/UserSettings/UserSettings";
 import { Browse } from "./components/Browse/Browse";
 import { Detailed } from "./components/Detailed/Detailed";
+import { UserHistory } from "./components/UserHistory/UserHistory";
 
 import { Login } from "./components/Auth/Login/Login";
 import { Signup } from "./components/Auth/Signup/Signup";
@@ -33,6 +34,10 @@ const App: React.FC = () => {
 
           <PrivateRoute path="/settings">
             <UserSettings />
+          </PrivateRoute>
+
+          <PrivateRoute path="/history">
+            <UserHistory />
           </PrivateRoute>
 
           <PreventRoute path="/login">

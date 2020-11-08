@@ -1,0 +1,25 @@
+@import "../../scss/base.scss";
+
+.userhistory {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.userhistory__header {
+  @include flex(center, space-between);
+  width: 100%;
+}
+
+.userhistory__title {
+  margin: 0;
+}
+
+.userhistory__close {
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.userhistory__list {
+  margin: 1rem 0;
+}
