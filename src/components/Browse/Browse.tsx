@@ -10,7 +10,6 @@ import { FoodCard } from "../Board/FoodCard/FoodCard";
 
 import { Col, Row, Select, Skeleton, Slider } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import { useTrackedState } from "../../store/store";
 
 type foodTypes = {
   category: string;
@@ -41,9 +40,8 @@ type filterTypes = {
 
 export const Browse: React.FC = () => {
   const history = useHistory();
-  const state = useTrackedState();
 
-  const [displayAmount, setDisplayAmount] = React.useState<number>(8);
+  const [displayAmount, setDisplayAmount] = React.useState<number>(4);
   const [searchTerm, setSearchTerm] = React.useState<string>("");
   const [filters, setFilters] = React.useState<filterTypes>({
     type: "asc",
@@ -63,10 +61,10 @@ export const Browse: React.FC = () => {
   }
 
   const handleDisplayMore = () => {
-    if (displayAmount >= displayFood().length) {
-      setDisplayAmount(8);
-    } else {
+    if (displayFood().length >= displayAmount) {
       setDisplayAmount((prevState) => prevState + 4);
+    } else {
+      setDisplayAmount(4);
     }
   }
 
@@ -172,8 +170,6 @@ export const Browse: React.FC = () => {
     return () => unsubscribe();
   }, [])
 
-  console.log(filters)
-
   return (
     <div className="browse">
       <header className="browse__header">
@@ -258,7 +254,7 @@ export const Browse: React.FC = () => {
       </section>
 
       <button className="browse__show-more" onClick={handleDisplayMore}>
-        { displayAmount >= displayFood().length ? "Less" : "More" }
+        { displayFood().length >= displayAmount ? "More" : "Less" }
       </button>
     </div>
   );

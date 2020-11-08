@@ -24,6 +24,7 @@ type State = {
 type Action =
   | { type: 'ADD_TO_BASKET', item: foodTypes }
   | { type: 'REMOVE_FROM_BASKET', id: string }
+  | { type: 'RESET_BASKET' }
   | { type: 'SET_CATEGORY', name: string }
 
 const initialState: State = {
@@ -42,6 +43,11 @@ const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         basket: state.basket.filter((item) => item.databaseId !== action.id)
+      }
+    case 'RESET_BASKET':
+      return {
+        ...state,
+        basket: []
       }
     case 'SET_CATEGORY':
       return {

@@ -1,8 +1,10 @@
 import React from "react";
 import "./foodcard.scss";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { useDispatch, useTrackedState, foodTypes } from "../../../store/store";
 
+import { message } from "antd";
 import { CloseOutlined, InfoCircleOutlined, PlusCircleOutlined, StarFilled } from "@ant-design/icons";
 
 interface Props {
@@ -20,6 +22,9 @@ interface Props {
 }
 
 export const FoodCard: React.FC<Props> = (props) => {
+  const history = useHistory();
+  const location = useLocation();
+
   const dispatch = useDispatch();
   const state = useTrackedState();
   const { basket } = state;
@@ -28,12 +33,14 @@ export const FoodCard: React.FC<Props> = (props) => {
   
   const handleAddToBasket = (item: foodTypes) => {
     dispatch({ type: "ADD_TO_BASKET", item })
-    
+    message.success("Item added to your basket");
+
     setIsInBasket(true);
   }
   
   const handleRemoveFromBasket = (id: string) => {
     dispatch({ type: "REMOVE_FROM_BASKET", id })
+    message.error("Item removed from your basket");
 
     setIsInBasket(false);
   }
@@ -60,7 +67,7 @@ export const FoodCard: React.FC<Props> = (props) => {
         <div className="foodcard__overlay">
           <span className="foodcard__price">${price}</span>
           <span className="foodcard__icon">
-            <InfoCircleOutlined />
+            <InfoCircleOutlined onClick={() => history.push(`/product/${databaseId}`, { from: location.pathname })}/>
           </span>
           <span className="foodcard__icon">
             {

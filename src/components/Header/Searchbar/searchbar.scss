@@ -37,6 +37,7 @@
   z-index: 2;
   top: 2.5rem;
   left: 0;
+  flex-direction: column;
 
   width: 100%;
   padding-bottom: .5rem;
@@ -52,4 +53,13 @@
 
   list-style: none;
   background: inherit;
+}
+
+.searchbar__item {
+  padding: .5rem 1.5rem;
+  cursor: pointer;
+}
+
+.searchbar__item:hover {
+  background: #d3d3d3;
 }

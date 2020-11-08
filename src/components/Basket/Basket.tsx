@@ -50,7 +50,7 @@ export const Basket: React.FC = () => {
 
         <div className="basket__price">
           <span className="basket__total">Total amount: </span>
-          <span className="basket__amount">${totalAmount}</span>
+          <span className="basket__amount">${totalAmount + 5}</span>
         </div>
 
         <button className="basket__checkout">Checkout</button>

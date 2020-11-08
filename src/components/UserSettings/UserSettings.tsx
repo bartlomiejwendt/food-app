@@ -2,7 +2,11 @@ import React from "react";
 import "./usersettings.scss";
 import { useHistory } from "react-router-dom";
 
-import { Avatar, Divider, Popconfirm } from "antd";
+import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/storage";
+
+import { Avatar, Divider, message, Popconfirm } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 
 export const UserSettings: React.FC = () => {
@@ -10,11 +14,84 @@ export const UserSettings: React.FC = () => {
   const currentUser = JSON.parse(localStorage.getItem("authUser")!);
   const { avatar, firstName, lastName, email }= currentUser;
 
+
   const [uploadFile, setUploadFile] = React.useState<any>();
+  const [name, setName] = React.useState<string>();
+
+  const handleUpdateName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setName(value);
+  }
 
   const handleUpdateAvatar = (e: any) => {
     const picture: any = e.target.files[0];
     setUploadFile(picture);
+  }
+
+  const handleUploadAvatarToStorage = async () => {
+    const { uid } = currentUser;
+
+    const storage = firebase.storage();
+    const storageRef = storage.ref(`/users/${uid}/profile`);
+
+    const fileRef = storageRef.child(uploadFile.name);
+    
+    await fileRef.put(uploadFile);
+    const fileUrl = await fileRef.getDownloadURL();
+
+    return fileUrl
+  }
+
+  const handleUpdateProfile = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    const { uid } = currentUser;
+
+    const database = firebase.firestore();
+    const userRef = database.collection("users").doc(uid);
+
+
+    if (uploadFile) { 
+      const newAvatarURL = await handleUploadAvatarToStorage();
+
+      userRef.update({
+        avatar: newAvatarURL
+      })
+
+      message.success("New picture uploaded! Please re-login");
+    }
+
+    if (name) {
+      const splitName = name.split(" ");
+      const firstName = splitName[0];
+      const lastName = splitName[1];
+
+      userRef.update({
+        fullName: name,
+        firstName,
+        lastName
+      })
+
+      message.success("Name changed! Please re-login");
+    }
+  }
+
+  const handleDeleteAccount = () => {
+    const { uid } = currentUser;
+
+    const database = firebase.firestore();
+    const auth = firebase.auth();
+
+    const userRef = database.collection("users").doc(uid);
+    const userDoc = auth.currentUser;
+
+    userRef.delete().then(() => {
+      userDoc?.delete();
+      
+      localStorage.clear();
+      history.push("/login");
+      message.success("Deleted");
+    })
+    
   }
 
   return (
@@ -60,6 +137,7 @@ export const UserSettings: React.FC = () => {
           name="fullName"
           placeholder={firstName + " " + lastName}
           defaultValue={firstName + " " + lastName}
+          onChange={(e) => handleUpdateName(e)}
         />
       </div>
 
@@ -88,6 +166,7 @@ export const UserSettings: React.FC = () => {
             title="Are you sure delete this account?"
             okText="Delete"
             cancelText="No"
+            onConfirm={() => handleDeleteAccount()}
           >
             <h4 className="user-settings__delete-account">Delete account</h4>
           </Popconfirm>
@@ -101,7 +180,12 @@ export const UserSettings: React.FC = () => {
       </div>
 
       <div className="user-settings__save-changes">
-        <button className="user-settings__button">Save changes</button>
+        <button 
+          className="user-settings__button"
+          onClick={(e) => handleUpdateProfile(e)}
+        >
+          Save changes
+        </button>
       </div>
     </div>
   );

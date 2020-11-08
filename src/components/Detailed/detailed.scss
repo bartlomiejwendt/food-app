@@ -1,0 +1,94 @@
+@import "../../scss/base.scss";
+
+.detailed {
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+
+.detailed__close {
+  @include flex(center, flex-start);
+  font-size: 1.25rem;
+  color: $red;
+  cursor: pointer;
+}
+
+.detailed__close-text {
+  margin: 0 1rem;
+}
+
+.detailed__photos {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.detailed__photo {
+  width: 100%;
+}
+
+.detailed__img {
+  width: 100%;
+  height: 70vh;
+
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.detailed__name {
+  margin-bottom: 0;
+}
+
+.detailed__description {
+  margin-top: 1.75rem;
+  text-align: justify;
+}
+
+.detailed__price {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.detailed__add-to-cart {
+  margin: 0 1rem;
+  padding: .5rem 1rem;
+
+  outline: none;
+  border: none;
+  border-radius: 2rem;
+
+  background: $orange;
+  color: white;
+  cursor: pointer;
+}
+
+.detailed__remove-from-cart {
+  margin: 0 1rem;
+  padding: .5rem 1rem;
+
+  outline: none;
+  border: 1px solid $orange;
+  border-radius: 2rem;
+
+  background: white;
+  color: $orange;
+  cursor: pointer;
+}
+
+
+.detailed__comments-title {
+  @include flex(center, flex-start);
+  cursor: pointer;
+}
+
+.detailed__comments-right {
+  margin: 0 1rem;
+  font-size: 1rem;
+}
+
+.detailed__comments-list {
+  @include flex;
+  flex-direction: column;
+}

@@ -5,23 +5,32 @@ import { useTrackedState } from "../../../store/store";
 
 import { Basket } from "../../Basket/Basket";
 
-import { Badge, Drawer, Dropdown, Menu } from "antd";
+import { Badge, Drawer, Dropdown, Menu, message } from "antd";
 import { ShoppingOutlined } from "@ant-design/icons";
 
 export const User: React.FC = () => {
   const history = useHistory();
   const state = useTrackedState();
+  const currentUser = JSON.parse(localStorage.getItem("authUser")!);
+  const { fullName, avatar } = currentUser;
+
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
   const toggleIsVisible = () => {
     setIsVisible((prevState: boolean): boolean => !prevState);
   }
 
+  const handleSignOut = () => {
+    localStorage.clear();
+    history.push("/login");
+    message.success("Successfully signed out.")
+  }
+
   const userDropdown = (
     <Menu>
       <Menu.Item>History</Menu.Item>
       <Menu.Item onClick={() => history.push("/settings")}>Settings</Menu.Item>
-      <Menu.Item>Log out</Menu.Item>
+      <Menu.Item onClick={() => handleSignOut()}>Log out</Menu.Item>
     </Menu>
   )
 
@@ -36,13 +45,13 @@ export const User: React.FC = () => {
       <div className="user__picture">
         <img
           className="user__profile-picture"
-          src="https://images.unsplash.com/photo-1466921583968-f07aa80c526e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+          src={ avatar ? avatar : "https://images.unsplash.com/photo-1466921583968-f07aa80c526e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"}
           alt="logged user"
         />
       </div>
 
       <Dropdown overlay={userDropdown} trigger={['click']}>
-        <span className="user__name">Jan Kowalski</span>
+        <span className="user__name">{fullName}</span>
       </Dropdown>
 
       <Drawer

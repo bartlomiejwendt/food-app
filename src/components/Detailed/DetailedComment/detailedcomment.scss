@@ -1,0 +1,65 @@
+@import "../../../scss/base.scss";
+
+.detailedcomment {
+  @include flex(unset, flex-start);
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+
+  border-radius: 0.5rem;
+  background: #f7f7f7;
+}
+
+.detailedcomment:first-child {
+  margin: 0;
+}
+
+.detailedcomment__img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+  
+.detailedcomment__user {
+  width: 100%;
+  margin: 0 1rem;
+}
+
+.detailedcomment__info {
+  @include flex(center, space-between);
+}
+
+.detailedcomment__author {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.detailedcomment__date {
+  font-size: .95rem;
+  font-weight: 500;
+}
+
+.detailedcomment__content {
+  text-align: justify;
+  margin: .5rem 0;
+}
+
+.detailedcomment__rate {
+  @include flex(baseline, space-between);
+}
+
+.detailedcomment__likes {
+  font-size: 1rem;
+}
+
+.detailedcomment__likes-count {
+  margin: 0 0.5rem;
+}
+
+.detailedcomment__heart {
+  color: #D71B3B;
+  cursor: pointer;
+}
