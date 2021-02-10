@@ -23,14 +23,18 @@ export const Basket: React.FC = () => {
 
     const database = firebase.firestore();
     const userRef = database.collection("users").doc(uid).collection("history");
+    
+    if (basket.length) {
+      userRef.add({
+       items: basket,
+       date: new Date()
+      })
 
-    userRef.add({
-     items: basket,
-     date: new Date()
-    })
-
-    dispatch({ type: "RESET_BASKET" });
-    message.success("You have successfully bought items");
+      dispatch({ type: "RESET_BASKET" });
+      message.success("You have successfully bought items");
+    } else {
+      message.error("Your basket is empty!");
+    }
   }
 
   React.useEffect(() => {
